@@ -11,12 +11,9 @@ public class InheritedTread extends Thread{
         sleep(2000L);
       }  
     } catch (Exception e) {
-      // TODO: handle exception
       System.out.println("we got an interrupt so hurray");
     }
-    
 
-    super.run();
   }
 
   public static void main(String[] args) {

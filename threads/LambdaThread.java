@@ -1,4 +1,5 @@
-
+import java.lang.InterruptedException;
+import java.lang.Thread;
 
 public class LambdaThread {
  
@@ -7,8 +8,18 @@ public class LambdaThread {
       
       @Override
       public void run() {
-        System.out.println("This is a thread");
-      }
+        try {
+          for(int i=0;i<=50;i++){
+           System.out.println("This is a thread from LambdaThread");
+           Thread.sleep(3000);
+           if(i>12){
+             throw new InterruptedException();
+           }
+         }
+        } catch (Exception e) {
+          System.out.println("an interrupt happened");
+        }
+     }
     });
 
     mthread.start();
