@@ -1,5 +1,6 @@
 
 import java.lang.Thread;
+import java.lang.InterruptedException;
 
 public class InheritedTread extends Thread{
 
@@ -9,6 +10,10 @@ public class InheritedTread extends Thread{
       for(int i =0;i<50;i++){
         System.out.println("InheritedTread");
         sleep(2000L);
+        /*if (Thread.interrupted()) {
+          throw new InterruptedException(); 
+        }*/
+
       }  
     } catch (Exception e) {
       System.out.println("we got an interrupt so hurray");
@@ -16,9 +21,11 @@ public class InheritedTread extends Thread{
 
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException{
     Thread mThread = new InheritedTread();
-    mThread.run();
+    mThread.start();
+    Thread.sleep(4000);
+    mThread.interrupt();
   }
 }
 
