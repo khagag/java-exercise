@@ -1,26 +1,25 @@
 
 
-public class UnSyncronizedMethod {
+public class SyncronizedMethod {
  
-  static volatile int c =0;
+  static int c =0;
  
-  public void counter(String name){
+  public synchronized static void counter(String name){
      System.out.println(name+" : "+ ++c);
   }
-  public void sub(String name){
+  public synchronized static void sub(String name){
      System.out.println(name+" : "+ --c);
   }
  
   public static void main(String[] args) {
-    UnSyncronizedMethod unSyncronizedMethod = new UnSyncronizedMethod();
     Thread USThread = new Thread(()-> {
       for(int i=0;i<10;i++)
-        unSyncronizedMethod.counter("Thread 1");
+        counter("Thread 1");
     });
 
     Thread USThread2 = new Thread(()-> {
       for(int x=0;x<10;x++)
-        unSyncronizedMethod.sub("Thread 2");
+        sub("Thread 2");
     }); 
 
     USThread.start();
